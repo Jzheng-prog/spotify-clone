@@ -31,7 +31,7 @@ const Modal: React.FC<ModalProps> = ({isOpen, onChange, title, description, chil
                 md:w-[90vw]
                 md:max-w-[450px]
                 translate-x-[-50%]
-                translate-y-[50%]
+                translate-y-[-50%]
                 rounded-md
                 bg-neutral-800
                 p-[25px]
