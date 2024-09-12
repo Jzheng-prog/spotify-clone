@@ -2,11 +2,16 @@
 import useAuthModal from '@/hooks/useAuthModal'
 import useUploadModal from '@/hooks/useUploadModal'
 import { useUser } from '@/hooks/useUser'
+import { Song } from '@/types'
 import React from 'react'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { TbPlaylist } from 'react-icons/tb'
+import MediaItem from './MediaItem'
 
-const Library = () => {
+interface LibraryProp{
+  songs: Song[]
+}
+const Library:React.FC<LibraryProp> = ({songs}) => {
 
     const {user} = useUser();
     const authModal = useAuthModal();
@@ -29,7 +34,13 @@ const Library = () => {
       </div>
 
       <div className='flex flex-col gap-y-4 mt-4 px-3'>
-        list of songs!
+        {
+          songs.map((song)=>(
+            <div>
+              <MediaItem data={song}/>
+            </div>
+          ))
+        }
       </div>
     </div>
   )
