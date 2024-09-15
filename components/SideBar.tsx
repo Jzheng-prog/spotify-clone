@@ -36,10 +36,10 @@ const SideBar: React.FC<SideBarProps> = ({children, songs}) => {
     ],[pathName]);
 
   return (
-    <div className={twMerge(`flex h-full text-white`, player.activeId && "h-[calc(100%-80px]")}>
+    <div className={twMerge(`flex h-full text-white`, player.activeId && "h-[calc(100%-80px)]")}>
       <div className='hidden md:flex flex-col gap-y-2 bg-black h-full p-2 w-[300px]'>
         <Box>
-            <div className='flex flex-col  gap-y-4 py-4 px-5'>
+            <div className='flex flex-col gap-y-4 py-4 px-5'>
                 {routes.map((item)=>(
                     <SidebarItem key={item.label} {...item}/>
                 ))}
