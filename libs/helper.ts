@@ -4,7 +4,7 @@ export const getURL = () => {
     let url =
         process.env.NEXT_PUBLIC_SITE_URL ??
         process.env.NEXT_PUBLIC_VERCEL_URL ??
-        'http://http://localhost:3000/'
+        'http://localhost:3000/'
 
     
     url = url.includes('http') ? url : `https://${url}`;
@@ -13,7 +13,7 @@ export const getURL = () => {
     return url;
 }
 
-export const postData = async ({url,data} : {url: string,data?: {price: Price}})=>{
+export const postData = async ({url,data} : {url: string; data?: {price: Price}})=>{
 
     console.log("Post Request", url, data)
 
@@ -21,9 +21,10 @@ export const postData = async ({url,data} : {url: string,data?: {price: Price}})
         method : 'POST',
         headers: new Headers({
             'Content-Type':'application/json',
-            credentials: 'same-origin',
-            body: JSON.stringify(data)
-        })
+        }),
+        credentials: 'same-origin',
+        body: JSON.stringify(data)
+
     })
 
     if(!res.ok){

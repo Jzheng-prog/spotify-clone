@@ -13,7 +13,7 @@ type UserContextType = {
     subscription: Subscription | null;
 }
 
-export const UserContext = createContext<UserContextType|undefined>(undefined)
+export const UserContext = createContext< UserContextType | undefined >(undefined)
 
 export interface Props {
     [propName: string]: any;
@@ -36,11 +36,11 @@ export const MyUserContextProvider = (props: Props) => {
     )
 
     const getSubscription = () => (
-        supabase.from('subscriptions').select('*, prices(*, products(*)').in('status', ['trialing','active']).single()
+        supabase.from('subscriptions').select('*, prices(*, products(*))').in('status', ['active']).single()
     )
 
     useEffect(()=>{
-        if(user&& !isLoadingData && !userDetails && !subscription){
+        if( user && !isLoadingData && !userDetails && !subscription){
             setisLoadingData(true)
             Promise.allSettled([getUserDetails(),getSubscription()]).then((results)=>{
                 const userDetailsPromise = results[0];
@@ -55,12 +55,17 @@ export const MyUserContextProvider = (props: Props) => {
                 }
                 setisLoadingData(false)
             })
+
         } else if (!user && !isLoadingUser && !isLoadingData){
             setUserDetails(null);
             setSubscription(null)
         }
     },[user, isLoadingUser])
-
+    useEffect(() => {
+        if (subscription) {
+            console.log("Subscription status from useUser3:", subscription); 
+        }
+    }, [subscription]);
     const value = {
         accessToken, 
         user, 
