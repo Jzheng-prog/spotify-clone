@@ -3,6 +3,7 @@
 ## Overview
 
 This project is a full-stack music streaming application that replicates popular features and functionalities of Spotify. Developed using **Next.js 13.4**, **React**, **Tailwind CSS**, **Supabase**, **PostgreSQL**, and **Stripe**, this application showcases modern web development techniques and best practices.
+<img src=https://github.com/user-attachments/assets/ed3532fc-819b-42dd-9eeb-1ca9cd5ca33e/>
 
 ## Features
 
@@ -36,6 +37,6 @@ To run this project locally, follow these steps:
 ### Installation
 
 1. Clone the repository
-2. Make sure to have stripe and and supabase integrated with api keys and secret
+2. Make sure to have stripe and and supabase integrated with api keys and secret. Supabase will pause if the database isn't active for a period a time. Make sure to unpuase it if so. Webhooks for stripe need to be updated accordingly for every "stripe login"
 3. npm run dev
 
