@@ -20,12 +20,12 @@ const AccountContent = () => {
             router.replace('/')
         }
         console.log("useEffect from AccountContent subscription status:", subscription)
-    },[isLoading, user, router])
+    },[isLoading, user, router,subscription])
 
     const redirectToCustomerPortal = async ()=>{
         setLoading(true);
         try{
-            const {url, error} = await postData({
+            const {url} = await postData({
                 url:'/api/create-portal-link'
             })
             window.location.assign(url)
