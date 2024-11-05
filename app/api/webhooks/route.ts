@@ -28,12 +28,14 @@ export async function POST(
     const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
     let event: Stripe.Event;
 
-    try{
-        if(!sig|| !webhookSecret) return
-        event = stripe.webhooks.constructEvent(body,sig,webhookSecret)
-    }catch(error){
-        console.log('Error Message: ' + error.message)
-        return new NextResponse(`Webhoock Error: ${error.message}`, {status:400})
+    try {
+        if (!sig || !webhookSecret) return;
+        event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
+    } catch (error: unknown) {
+        // Check if `error` has a `message` property
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        console.error(`Webhook Error: ${errorMessage}`);
+        return new NextResponse(`Webhook Error: ${errorMessage}`, { status: 400 });
     }
 
     if(relevantEvents.has(event.type)){
